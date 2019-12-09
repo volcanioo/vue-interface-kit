@@ -14,6 +14,13 @@ We developed this structure because improve performance on css side and be faste
 2. Multiselect ([https://vue-multiselect.js.org])
 3. VCalendar ([https://vcalendar.io])
 
+# Photos of Documentation
+<img width="1920" alt="Screen Shot 2019-12-10 at 02 46 51" src="https://user-images.githubusercontent.com/14016028/70482747-67446000-1af7-11ea-9130-b24f4efe3c0e.png">
+<img width="1920" alt="Screen Shot 2019-12-10 at 02 47 00" src="https://user-images.githubusercontent.com/14016028/70482746-67446000-1af7-11ea-8e8b-c714a3098b11.png">
+<img width="1920" alt="Screen Shot 2019-12-10 at 02 47 10" src="https://user-images.githubusercontent.com/14016028/70482745-67446000-1af7-11ea-89ae-0e34aee20717.png">
+<img width="1920" alt="Screen Shot 2019-12-10 at 02 47 15" src="https://user-images.githubusercontent.com/14016028/70482744-66abc980-1af7-11ea-9dcc-a30617ed134a.png">
+
+
 ## Getting Started
 ```
 npm install

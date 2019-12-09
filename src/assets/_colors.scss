@@ -1,0 +1,57 @@
+/*******************************************
+ * © 2018                                  *
+ * by TRTWorld Labs                        *
+ -------------------------------------------
+ *                                         *
+ * TRT Colors                              *
+ *******************************************/
+$turquoise-lighter: #C0EFF6;
+$turquoise-light: #81E0EE;
+$turquoise-mid: #05C3DE;
+$turquoise-dark: #0392A7;
+$turquoise-darker: #013037;
+$red-lighter: #F8BFC9;
+$red-light: #F18095;
+$red-mid: #E4002B;
+$red-dark: #AB0020;
+$red-darker: #39000A;
+$green-lighter: #C2EBC9;
+$green-light: #85D794;
+$green-mid: #0DB02B;
+$green-dark: #098420;
+$green-darker: #032C0A;
+$orange-lighter: #FFDAC4;
+$orange-light: #FFB489;
+$orange-mid: #FF6A13;
+$orange-dark: #BF4F0E;
+$orange-darker: #401A04;
+$blue-lighter: #BFDBF2;
+$blue-light: #80B8E6;
+$blue-mid: #0072CE;
+$blue-dark: #00559B;
+$blue-darker: #001C33;
+$ink: #1C2933;
+$ink-light: #5D6D7C;
+$ink-lighter: #9EAEBA;
+$sky: #F5F7FA;
+$sky-dark: #EEF2F5;
+$sky-darker: #D6DFE6;
+$gray: #C4CFD8;
+$world-black: #1e1e1e;
+$world-white: #f0f0f2;
+$purple-dark: #8c0063;
+$transparent: transparent;
+$white: #fff;
+$black: #000;
+$tomato25: rgba(255, 99, 71, .25);
+$tomato50: rgba(255, 99, 71, .5);
+$tomato100: rgba(255, 99, 71, 1);
+$colors : (turquoise-lighter $turquoise-lighter) (turquoise-light $turquoise-light) (turquoise-mid $turquoise-mid) (turquoise-dark $turquoise-dark) (turquoise-darker $turquoise-darker) (red-lighter $red-lighter) (red-light $red-light) (red-mid $red-mid) (red-dark $red-dark) (red-darker $red-darker) (green-lighter $green-lighter) (green-light $green-light) (green-mid $green-mid) (green-dark $green-dark) (green-darker $green-darker) (orange-lighter $orange-lighter) (orange-light $orange-light) (orange-mid $orange-mid) (orange-dark $orange-dark) (orange-darker $orange-darker) (blue-lighter $blue-lighter) (blue-light $blue-light) (blue-mid $blue-mid) (blue-dark $blue-dark) (blue-darker $blue-darker) (ink $ink) (ink-light $ink-light) (ink-lighter $ink-lighter) (sky $sky) (sky-dark $sky-dark) (sky-darker $sky-darker) (gray $gray) (world-black $world-black) (world-white $world-white) (purple-dark $purple-dark) (transparent $transparent) (white $white) (black $black);
+@each $color in $colors {
+    .color-#{nth($color, 1)} {
+        color: nth($color, 2) !important;
+    }
+    .bg-#{nth($color, 1)} {
+        background-color: nth($color, 2) !important;
+    }
+}

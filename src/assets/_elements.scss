@@ -1,0 +1,1375 @@
+/*******************************************
+ * © 2018                                  *
+ * by TRTWorld Labs                        *
+ -------------------------------------------
+ *                                         *
+ * TRT Fields                              *
+ * TRT Buttons                             *
+ *******************************************/
+
+// Fields
+.t-fields {
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    
+    // Common
+    label,
+    input,
+    textarea {
+        font-family: inherit;
+        font-stretch: normal;
+        font-size: 14px;
+        line-height: 20px;
+        border: none;
+    } 
+    
+    // Defines
+    label {
+        margin-bottom: 4px;
+        font-weight: 600;
+    } 
+    
+    // Required
+    &.required {
+        label:after {
+            content: " *";
+            color: $red-mid;
+            font-size: 20px;
+            display: inline-block;
+            overflow: hidden;
+            height: 15px;
+            margin-left: 2px;
+        }
+        &.success {
+            label:after {
+                color: $green-mid;
+            }
+        }
+        &.warning {
+            label:after {
+                color: $orange-mid;
+            }
+        }
+    } 
+    
+    // _description
+    ._description {
+        @include text(inherit, 11px, 16px, 0px, $ink-lighter, 500);
+        margin-top: 4px;
+        &:before {
+            content: attr(data-message);
+            color: inherit;
+            font-weight: 600;
+            margin-bottom: 2px;
+            display: none;
+        }
+    } 
+    
+    // Input Field
+    %input {
+        width: 100%;
+        height: 36px;
+        padding: 8px 12px !important;
+        border-radius: 4px !important;
+        box-shadow: inset 0px 0px 0px 1px $gray, inset 0px 1px 2px 0px rgba(93, 109, 124, .25);
+        background: $white !important;
+        color: $ink;
+        &:active {
+            @include shadow(0px 0px 0px 3px $ink-light)
+        }
+        &:focus {
+            @include shadow(inset 0px 0px 0px 1px $ink-light);
+        }
+        &:disabled {
+            @include shadow(inset 0px 0px 0px 1px $gray);
+            background: $sky;
+            color: $ink-lighter;
+            cursor: no-drop;
+        }
+    }
+    &[data-field=input],
+    &[data-field=date] {
+        input {
+            @extend %input;
+        } // Sizes
+        @for $i from 2 through 10 {
+            &.size-#{$i} {
+                label,
+                input {
+                    font-size: #{$i*2+14}px;
+                    line-height: #{$i*2+20}px;
+                }
+                input {
+                    padding: #{$i*2+4}px #{$i*2+8}px;
+                    height: #{$i*2+36}px;
+                }
+            }
+        } // Iconic
+        .iconic {
+            position: relative;
+            >i {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                overflow: hidden;
+                margin: 8px;
+                pointer-events: none;
+                * {
+                    -webkit-mask-size: calc(100% - 6px) 100%;
+                }
+                text-align: center;
+                i {
+                    font-size: 15px;
+                    line-height: 19px;
+                }
+            }
+            &[data-position=left] {
+                >i {
+                    left: 0;
+                }
+                input {
+                    padding-left: 32px !important;
+                }
+            }
+            &[data-position=right] {
+                >i {
+                    right: 0;
+                }
+                input {
+                    padding-right: 32px !important;
+                }
+            }
+        }
+    } 
+
+    &[data-field=date] {
+        > .popover-container {
+            position: relative;
+            input {
+                padding-left: 32px !important;
+            }
+            &:after {
+                content: "\f073";
+                width: 25px;
+                font-family: "Font Awesome 5 Pro";
+                height: 25px;
+                text-align: center;
+                line-height: 25px;
+                color: $ink-light;
+                position: absolute;
+                font-weight: 300;
+                left: 4px;
+                top: 50%;
+                @include transform(translate(0, -50%))
+            }
+        }
+
+        .c-pane-container {
+            background: white !important;
+            border: none !important;
+            box-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.08), 0 0 0 1px rgba(6, 44, 82, 0.1) !important;
+            border-radius: 3px !important;
+        }
+        .c-header {
+            .c-title-layout {
+                .c-title-popover {
+                    .c-title-anchor {
+                        .c-title {
+                            font-family: inherit !important;
+                            font-size: 14px !important;
+                            font-weight: 700 !important;
+                            color: $world-black;
+                            position: relative;
+                            line-height: 35px;
+                        }
+                    }
+                }
+            }
+        }
+        .c-day-popover {
+            border: 1px solid #dfe3e8;
+            border-bottom: none;
+            border-right: none !important;
+            &:last-child {
+                border-right: 1px solid #dfe3e8 !important;
+            }
+        }
+        .c-week {
+            &:last-child {
+                border-bottom: 1px solid #dfe3e8;
+            }
+        }
+        .c-day-content {
+            font-size: 14px !important;
+            font-family: inherit;
+            font-weight: 400 !important;
+            // color: #666666 !important;
+            border-radius: 0 !important;
+            width: 100% !important;
+            display: flex !important;
+            margin: 0 !important;
+            text-align: center;
+        }
+
+    }
+    
+    // Textarea Field
+    &[data-field=textarea] {
+        textarea {
+            width: 100%;
+            height: 78px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: block;
+            box-shadow: inset 0px 0px 0px 1px $gray, inset 0px 1px 2px 0px rgba(93, 109, 124, .25);
+            background: $white;
+            resize: none;
+            border: none;
+            color: $ink;
+            &:active {
+                @include shadow(0px 0px 0px 3px $ink-light)
+            }
+            &:focus {
+                @include shadow(inset 0px 0px 0px 1px $ink-light);
+                & + .limitter-shower {
+                    display: block;
+                }
+            }
+            &:disabled {
+                @include shadow(inset 0px 0px 0px 1px $gray);
+                background: $sky;
+                color: $ink-lighter;
+                cursor: no-drop;
+            } // Sizes
+            @for $i from 2 through 10 {
+                &.size-#{$i} {
+                    label,
+                    input {
+                        font-size: #{$i*2+14}px;
+                        line-height: #{$i*2+20}px;
+                    }
+                    input {
+                        padding: #{$i*2+4}px #{$i*2+8}px;
+                        height: #{$i*2+36}px;
+                    }
+                }
+            }
+        }
+        .limitter {
+            position: relative;
+            .limitter-shower {
+                position: absolute;
+                top: -23px;
+                display: none;
+                right: 0;
+                border-radius: 2px;
+                padding: 3px 3px;
+                font-family: inherit;
+                font-size: 10px;
+                font-weight: 600;
+                color: $ink-lighter;
+            }
+        }
+    } 
+    
+    // Radio Field
+    &[data-field=radio],
+    &[data-field=checkbox] {
+        cursor: pointer;
+        input {
+            display: none;
+        }
+        label {
+            font-weight: 500;
+            margin: 0;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            &:before {
+                content: "";
+                width: 16px;
+                height: 16px;
+                border-radius: 100%;
+                margin-right: 6px;
+                @include grandient-mixin($white, $sky);
+                box-shadow: inset 0 0 0 1px $gray;
+            }
+            &:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                top: 50%;
+                background: $green-mid;
+                border-radius: 100%;
+                margin-top: -5px;
+                left: 3px;
+                display: block;
+                opacity: 0;
+            }
+        }
+        input:checked+label::after {
+            opacity: 1;
+        }
+        input:disabled+label {
+            color: $gray;
+            &:before {
+                @include grandient-mixin($sky, $sky);
+            }
+        }
+    }
+    &[data-field=checkbox] {
+        label {
+            &:after,
+            &:before {
+                border-radius: 2px;
+            }
+        }
+    } 
+    
+    // Select Field
+    &[data-field=select],
+    &[data-field=select-ajaxsearch],
+    &[data-field=select-searchable] {
+        .multiselect__tags {
+            height: 36px;
+            min-height: auto;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            font-family: inherit;
+            @include grandient-mixin($white, $sky);
+            @include shadow(inset 0 0 0 1px $gray);
+            align-items: center;
+            padding: 0 20px 0 12px;
+            border-radius: 4px !important;
+            .multiselect__placeholder {
+                padding: 0;
+                display: flex;
+                margin: 0;
+                cursor: pointer;
+                @include text(inherit, 14px, 20px, 0px, $ink, 500);
+            }
+        }
+        .multiselect__select {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            margin: 0;
+            top: 6px;
+            right: 6px;
+            &:before {
+                border-color: $gray transparent transparent;
+                top: 70%;
+            }
+        }
+        .multiselect--active {
+            .multiselect__tags {
+                @include shadow(inset 0 0 0 1px $ink-light);
+            }
+            .multiselect__select {
+                &:before {
+                    border-color: $ink-light transparent transparent;
+                    top: 68%;
+                }
+            }
+        }
+        .multiselect__input,
+        .multiselect__single {
+            background: transparent;
+            border-radius: 0;
+            margin: 0;
+            padding: 0;
+            @include text(inherit, 14px, 20px, 0px, $ink, 500);
+        }
+        .multiselect__content-wrapper {
+            top: 39px;
+            border-radius: 3px;
+            border: 1px solid #9eaeba;
+            background: white;
+            box-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.08);
+            padding: 12px 0;
+        }
+        .multiselect__element {
+            >span {
+                background: transparent !important;
+                @include text(inherit, 16px, auto, 0px, $ink, 500);
+                &:after {
+                    display: none;
+                }
+                &.multiselect__option--selected {
+                    background: $sky !important;
+                }
+                &:hover {
+                    background: rgba($sky, .65) !important;
+                }
+            }
+        }
+        .multiselect--above {
+            .multiselect__content-wrapper {
+                top: initial;
+                bottom: 43px;
+            }
+        }
+        .multiselect--disabled .multiselect__select,
+        .multiselect--disabled {
+            opacity: 1;
+            cursor: no-drop;
+            background: transparent;
+            pointer-events: auto;
+            .multiselect__tags {
+                background: $sky !important;
+                cursor: no-drop !important;
+                * {
+                    color: #9eaeba !important;
+                    cursor: no-drop;
+                }
+            }
+            &+._custom-placeholder {
+                display: none;
+            }
+        }
+        i {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 15px;
+            -webkit-mask-size: 15px;
+            background-position: left;
+            -webkit-mask-position: left;
+        }
+        ._iconic-select {
+            &[data-position=left] {
+                padding-left: 24px;
+                i {
+                    margin-left: 12px;
+                    left: 0;
+                }
+            }
+            &[data-position=right] {
+                padding-right: 24px;
+                i {
+                    margin-right: 12px;
+                    right: 0;
+                }
+            }
+        }
+        ._description {
+            margin-top: 0;
+        }
+    }
+    &[data-field=select-ajaxsearch],
+    &[data-field=select-searchable] {
+        .multiselect__content-wrapper {
+            padding-top: 60px !important;
+        }
+        .multiselect__input {
+            @extend %input;
+            width: calc(100% - 24px) !important;
+            top: 52px;
+            position: absolute;
+            z-index: 2;
+            display: none;
+            box-shadow: inset 0px 0px 0px 1px $gray, inset 0px 1px 2px 0px rgba(93, 109, 124, .25) !important;
+        }
+        .multiselect--active {
+            .multiselect__input {
+                display: block;
+            }
+        }
+        ._custom-placeholder {
+            margin-top: -39px;
+            z-index: 2;
+            margin-bottom: 4px;
+            display: flex;
+            cursor: pointer;
+            padding: 0 12px;
+            height: 36px; //align-items: center;
+            @include text(inherit, 14px, 35px, 0px, $ink, 500);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .multiselect--active+._custom-placeholder {
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .multiselect--above {
+            .multiselect__input {
+                top: auto;
+                bottom: 56px;
+            }
+            .multiselect__content-wrapper {
+                padding-bottom: 60px;
+                padding-top: 12px !important;
+            }
+        }
+    }
+    &[data-field=select] {
+        // If developer did any fault on implemantation of type, css will fix this bug.
+        ._custom-placeholder {
+            display: none;
+        }
+    } 
+    &[data-field=select-ajaxsearch] {
+        .multiselect__placeholder,
+        ._custom-placeholder {
+            padding-left: 25px !important;
+            &:after {
+                content: "";
+                width: 14px;
+                height: 14px;
+                border: 2px solid #8a8a8a;
+                position: absolute;
+                left: 12px;
+                top: 9px;
+                border-radius: 100%;
+            }
+            &:before {
+                content: "";
+                width: 2px;
+                height: 8px;
+                background: #8a8a8a;
+                position: absolute;
+                left: 24px;
+                top: 19px;
+                transform: rotate(-45deg);
+            }
+        }
+        ._custom-placeholder {
+            position: relative;
+            padding-left: 37px !important;
+            &:after {
+                top: 8px;
+            }
+            &:before {
+                top: 18px;
+            }
+        }
+        &[data-loading=true] {
+            .multiselect__placeholder,
+            ._custom-placeholder {
+                &:after, &:before {
+                    background: gray !important;
+                    top: 50%;
+                    margin-top: -12px;
+                    width: 20px;
+                    height: 20px;
+                    left: 10px;
+                    transform: none;
+                    border: none;
+                    border-radius: 100%;
+
+                    background-color: #333;
+                    opacity: 0.6;
+                    position: absolute;
+                    
+                    -webkit-animation: sk-bounce .7s infinite ease-in-out;
+                    animation: sk-bounce .7s infinite ease-in-out;
+                }
+                &:before {
+                    -webkit-animation-delay: -1.0s;
+                    animation-delay: -1.0s;
+                }
+            }
+        }
+    }
+    
+    // Tag Field 
+    &[data-field=tag],
+    &[data-field=tag-single],
+    &[data-field=tag-searchable] {
+        .multiselect__tags {
+            display: flex;
+            flex-direction: column-reverse;
+            padding: 0;
+            border: none;
+            background: transparent;
+        }
+        ._searchable {
+            margin-top: -36px !important;
+            &._isSelectedAnything {
+                padding-top: 44px !important;
+            }
+        }
+        .multiselect__input,
+        ._custom-placeholder {
+            position: static !important;
+            width: auto !important;
+            height: 36px;
+            min-height: auto;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            font-family: inherit;
+            @include grandient-mixin($white, $sky);
+            @include shadow(inset 0 0 0 1px $gray);
+            align-items: center;
+            padding: 0 20px 0 12px !important;
+            border-radius: 4px !important;
+            @include text(inherit, 14px, 20px, 0px, $ink, 500);
+        }
+        .multiselect .multiselect__select {
+            margin-top: -3px;
+        }
+        .multiselect--active .multiselect__select {
+            margin-top: 0px !important;
+        }
+        .multiselect__placeholder {
+            display: none;
+        }
+        .multiselect__tag {
+            background: $sky-dark;
+            padding: 8px 34px 8px 16px;
+            margin: 0 8px 8px 0;
+            border-radius: 18px;
+            @include text(inherit, 14px, 20px, 0px, $ink-light, 500);
+            i {
+                width: 16px;
+                height: 16px;
+                background: $ink-lighter !important;
+                border-radius: 100%;
+                line-height: 14px;
+                top: 50%;
+                margin-top: -8px;
+                right: 11px;
+                &:after {
+                    color: $sky-dark;
+                    font-size: 14px;
+                    &:hover {
+                        background: rgba($ink-light, .8) !important;
+                    }
+                }
+            }
+            &:hover {
+                background: rgba($sky-dark, .8);
+                cursor: default;
+            }
+        }
+        .multiselect__content-wrapper {
+            top: 39px;
+            border-radius: 3px;
+            border: 1px solid #9eaeba;
+            background: white;
+            box-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.08);
+            padding: 12px 0;
+        }
+        .multiselect__element {
+            >span {
+                background: transparent !important;
+                @include text(inherit, 16px, auto, 0px, $ink, 500);
+                &:after {
+                    display: none;
+                }
+                &.multiselect__option--selected {
+                    background: $sky !important;
+                }
+                &:hover {
+                    background: rgba($sky, .65) !important;
+                }
+            }
+        }
+        .multiselect--above {
+            .multiselect__content-wrapper {
+                top: initial;
+                bottom: calc(100% + 4px);
+            }
+        }
+        .multiselect--active {
+            .multiselect__input {
+                @include shadow(inset 0 0 0 1px $ink-light);
+            }
+            .multiselect__select {
+                &:before {
+                    border-color: $ink-light transparent transparent;
+                    top: 68%;
+                }
+            }
+        }
+    }
+    &[data-field=tag-searchable] {
+        .multiselect {
+            //padding-top: 40px;
+        }
+        .multiselect__select {
+            z-index: 3;
+        }
+        .multiselect__input {
+            @extend %input;
+            width: calc(100% - 24px) !important;
+            top: 52px !important;
+            position: absolute !important;
+            left: 12px;
+            z-index: 2;
+            display: none;
+            box-shadow: inset 0px 0px 0px 1px $gray, inset 0px 1px 2px 0px rgba(93, 109, 124, .25) !important;
+        }
+        .multiselect--active {
+            .multiselect__input {
+                opacity: 1;
+                display: block !important;
+            }
+        }
+        ._custom-placeholder {
+            display: flex;
+            cursor: pointer;
+            padding: 0 12px;
+            height: 36px;
+            @include text(inherit, 14px, 35px, 0px, $ink, 500);
+            opacity: 1;
+            pointer-events: none;
+            position: absolute !important;
+            width: 100% !important;
+            top: 24px;
+        }
+        .multiselect--active+._custom-placeholder {
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .multiselect__tags-wrap {
+            margin-top: 45px;
+            margin-bottom: -12px;
+        }
+        .multiselect--above {
+            .multiselect__input {
+                top: auto !important;
+                bottom: 50px !important;
+            }
+            .multiselect__content-wrapper {
+                padding-bottom: 60px;
+                padding-top: 12px !important;
+            }
+        }
+    }
+    &[data-field=tag],
+    &[data-field=tag-single] {
+        ._custom-placeholder {
+            width: 100% !important;
+            top: 24px !important;
+            position: absolute !important;
+            pointer-events: none;
+        }
+        ._isSelectedAnything .multiselect__tags {
+            margin-top: 44px;
+        }
+    }
+    &[data-field].minimal {
+        .multiselect__tag {
+            padding: 4px 28px 4px 8px;
+            font-size: 12px;
+            i {
+                right: 5px;
+            }
+        }
+    }
+    &[data-field=tag-single] {
+        ._description {
+            margin-top: 0;
+        }
+    } 
+    
+    // Validations
+    &[data-validation] {
+        ._description {
+            &:before {
+                display: block;
+            }
+        }
+    }
+    &[data-validation=error] {
+        input:not(.multiselect__input),
+        textarea,
+        .multiselect__tags {
+            @include shadow(inset 0px 0px 0px 1px $red-dark);
+            background: rgba($red-lighter, .7) !important;
+            color: $red-dark;
+        }
+        ._custom-placeholder,
+        .multiselect__single,
+        .multiselect__input,
+        .multiselect__tags .multiselect__placeholder {
+            color: $red-dark !important;
+        }
+        .multiselect__select:before {
+            border-color: $red-dark transparent !important;
+        }
+        ._description:before {
+            color: $red-mid;
+        }
+        &[data-field=tag],
+        &[data-field=tag-searchable] {
+            .multiselect__tags {
+                background: transparent !important;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+            ._custom-placeholder {
+                @include shadow(inset 0px 0px 0px 1px $red-dark);
+                background: rgba($red-lighter, .7) !important;
+                color: $red-dark;
+            }
+        }
+        &[data-field=tag-single] {
+            .multiselect__tags {
+                background: transparent !important;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+            input {
+                @include shadow(inset 0px 0px 0px 1px $red-dark);
+                background: rgba($red-lighter, .7) !important;
+                color: $red-dark;
+                &::placeholder {
+                    color: $red-dark;
+                }
+            }
+        }
+    }
+    &[data-validation=success] {
+        input:not(.multiselect__input),
+        textarea,
+        .multiselect__tags {
+            @include shadow(inset 0px 0px 0px 1px $green-dark);
+            background: rgba($green-lighter, .7) !important;
+            color: $green-dark;
+        }
+        ._custom-placeholder,
+        .multiselect__single,
+        .multiselect__input,
+        .multiselect__tags .multiselect__placeholder {
+            color: $green-dark !important;
+        }
+        .multiselect__select:before {
+            border-color: $green-dark transparent !important;
+        }
+        ._description:before {
+            color: $green-mid;
+        }
+        &[data-field=tag],
+        &[data-field=tag-searchable] {
+            .multiselect__tags {
+                background: transparent !important;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+            ._custom-placeholder {
+                @include shadow(inset 0px 0px 0px 1px $green-dark);
+                background: rgba($green-lighter, .7) !important;
+                color: $green-dark;
+            }
+        }
+        &[data-field=tag-single] {
+            .multiselect__tags {
+                background: transparent !important;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+            input {
+                @include shadow(inset 0px 0px 0px 1px $green-dark);
+                background: rgba($green-lighter, .7) !important;
+                color: $green-dark;
+                &::placeholder {
+                    color: $green-dark;
+                }
+            }
+        }
+    }
+    &[data-validation=warning] {
+        input:not(.multiselect__input),
+        textarea,
+        .multiselect__tags {
+            @include shadow(inset 0px 0px 0px 1px $orange-dark);
+            background: rgba($orange-lighter, .7) !important;
+            color: $orange-dark;
+        }
+        ._custom-placeholder,
+        .multiselect__input,
+        .multiselect__single,
+        .multiselect__tags .multiselect__placeholder {
+            color: $orange-dark !important;
+        }
+        .multiselect__select:before {
+            border-color: $orange-dark transparent !important;
+        }
+        ._custom-placeholder {
+            @include shadow(inset 0px 0px 0px 1px $orange-dark);
+            background: rgba($orange-lighter, .7) !important;
+            color: $orange-dark;
+        }
+        ._description:before {
+            color: $orange-mid;
+        }
+        &[data-field=tag],
+        &[data-field=tag-searchable] {
+            .multiselect__tags {
+                background: transparent !important;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+            ._custom-placeholder {
+                @include shadow(inset 0px 0px 0px 1px $orange-dark);
+                background: rgba($orange-lighter, .7) !important;
+                color: $orange-dark;
+            }
+        }
+        &[data-field=tag-single] {
+            .multiselect__tags {
+                background: transparent !important;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+            input {
+                @include shadow(inset 0px 0px 0px 1px $orange-dark);
+                background: rgba($orange-lighter, .7) !important;
+                color: $orange-dark;
+                &::placeholder {
+                    color: $orange-dark;
+                }
+            }
+        }
+    }
+    &[data-validation=error][data-field=textarea] {
+        .limitter {
+            .limitter-shower {
+                color: $red-mid;
+            }
+        }
+    }
+    &[data-validation=success][data-field=textarea] {
+        .limitter {
+            .limitter-shower {
+                color: $green-mid;
+            }
+        }
+    }
+    &[data-validation=warning][data-field=textarea] {
+        .limitter {
+            .limitter-shower {
+                color: $orange-mid;
+            }
+        }
+    }
+    
+}
+
+// Buttons
+.t-buttons {
+    cursor: pointer;
+    @each $color in $colors {
+        &.badge {
+            border-radius: 100px;
+            background-color: $ink-light;
+            color: $white;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            &.-f {
+                justify-content: center;
+                width: 100%;
+            }
+            &.badge-#{nth($color, 1)} {
+                background-color: lighten(nth($color, 2), 55%);
+                // border: solid 1px nth($color, 2);
+                color: nth($color, 2);
+                border-radius: 100px;
+                &.transparent {
+                    background: transparent !important;
+                    color: nth($color, 2) !important;
+                }
+                &[class$="darker"] {
+                    color: rgba(255, 255, 255, 1) !important;
+                }
+            }
+        }
+    }
+    &.button {
+        position: relative;
+        padding: 8px 16px;
+        width: auto;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        border-radius: 4px;
+        line-height: 20px;
+
+        // Identifiers
+        &.-f {
+            width: 100%;
+        }
+
+        // Color Shema
+        &.default {
+            @include grandient-mixin($white, $sky);
+            color: $ink-light;
+            box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $gray;
+            -webkit-box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $gray;
+
+            // Statements
+            &:hover, &.-hover {
+                background: $white;
+                box-shadow: inset 0 0 0 1px $gray, inset 0 1px 0 1px rgba(255, 255, 255, 0.3);
+                -webkit-box-shadow: inset 0 0 0 1px $gray, inset 0 1px 0 1px rgba(255, 255, 255, 0.3);
+            }
+            &:focus, &.-focus {
+                box-shadow: inset 0 0 0 2px $ink-light;
+                -webkit-box-shadow: inset 0 0 0 2px $ink-light;
+                &:before {
+                    border-left: 2px solid $ink-light;
+                }
+            }
+            &:active, &.-active {
+                box-shadow: inset 0 1px 2px 0 rgba(28, 41, 51, 0.25), inset 0 0 0 1px $gray;
+                -webkit-box-shadow: inset 0 1px 2px 0 rgba(28, 41, 51, 0.25), inset 0 0 0 1px $gray;
+                &:before {
+                    border-left: 1px solid $gray;
+                }
+            }
+            &:disabled, &.-disabled {
+                @include grandient-mixin($sky, $sky);
+                color: $gray;
+                &:before {
+                    border-left: 1px solid $gray;
+                }
+            }
+        }
+
+        // Colored
+        &.colored {
+            background: $turquoise-mid;
+            color: $white;
+            box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $turquoise-dark;
+            -webkit-box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $turquoise-dark;
+
+            &:before {
+                border-left: 1px solid $turquoise-dark !important;
+            }
+            // Statements
+            &:hover:after, &.-hover:after {
+                border-radius: 4px;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: $white;
+                opacity: .2;
+            }
+            &:focus, &.-focus {
+                box-shadow: inset 0 0 0 2px $turquoise-darker;
+                -webkit-box-shadow: inset 0 0 0 2px $turquoise-darker;
+                &:after {
+                    display: none;
+                }
+                &:before {
+                    border-left: 2px solid $turquoise-light;
+                }
+            }
+            &:active, &.-active {
+                box-shadow:inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $turquoise-dark;
+                -webkit-box-shadow: inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $turquoise-dark;
+                &:after {
+                    display: none;
+                }
+            }
+            &:disabled, &.-disabled {
+                @include grandient-mixin($turquoise-light, $turquoise-light);
+                color: $white;
+                box-shadow: inset 0 0 0 1px $turquoise-mid;
+                -webkit-box-shadow: inset 0 0 0 1px $turquoise-mid;
+                
+            }
+        }
+
+        // Green
+        &.success {
+            background: $green-mid;
+            color: $white;
+            box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $green-dark;
+            -webkit-box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $green-dark;
+
+            &:before {
+                border-left: 1px solid $green-dark !important;
+            }
+            // Statements
+            &:hover:after, &.-hover:after {
+                border-radius: 4px;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: $white;
+                opacity: .2;
+            }
+            &:focus, &.-focus {
+                box-shadow: inset 0 0 0 2px $green-darker;
+                -webkit-box-shadow: inset 0 0 0 2px $green-darker;
+                &:after {
+                    display: none;
+                }
+                &:before {
+                    border-left: 2px solid $green-darker;
+                }
+            }
+            &:active, &.-active {
+                box-shadow:inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $green-dark;
+                -webkit-box-shadow: inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $green-dark;
+                &:after {
+                    display: none;
+                }
+            }
+            &:disabled, &.-disabled {
+                @include grandient-mixin($green-light, $green-light);
+                color: $white;
+                box-shadow: inset 0 0 0 1px $green-mid;
+                -webkit-box-shadow: inset 0 0 0 1px $green-mid;
+                
+            }
+        }
+
+        // Red
+        &.error {
+            background: $red-mid;
+            color: $white;
+            box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $red-dark;
+            -webkit-box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $red-dark;
+
+            &:before {
+                border-left: 1px solid $red-dark !important;
+            }
+            // Statements
+            &:hover:after, &.-hover:after {
+                border-radius: 4px;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: $white;
+                opacity: .2;
+            }
+            &:focus, &.-focus {
+                box-shadow: inset 0 0 0 2px $red-darker;
+                -webkit-box-shadow: inset 0 0 0 2px $red-darker;
+                &:after {
+                    display: none;
+                }
+                &:before {
+                    border-left: 2px solid $red-darker;
+                }
+            }
+            &:active, &.-active {
+                box-shadow:inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $red-dark;
+                -webkit-box-shadow: inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $red-dark;
+                &:after {
+                    display: none;
+                }
+            }
+            &:disabled, &.-disabled {
+                @include grandient-mixin($red-light, $red-light);
+                color: $white;
+                box-shadow: inset 0 0 0 1px $red-mid;
+                -webkit-box-shadow: inset 0 0 0 1px $red-mid;
+                
+            }
+        }
+
+        // Black
+        &.dark {
+            background: $ink;
+            color: $white;
+            box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $black;
+            -webkit-box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px $black;
+
+            &:before {
+                border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+            }
+            // Statements
+            &:hover:after, &.-hover:after {
+                border-radius: 4px;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: $white;
+                opacity: .1;
+            }
+            &:focus, &.-focus {
+                box-shadow: inset 0 0 0 2px $gray;
+                -webkit-box-shadow: inset 0 0 0 2px $gray;
+                &:after {
+                    display: none;
+                }
+                &:before {
+                    border-left: 1px solid $gray !important;
+                }
+            }
+            &:active, &.-active {
+                box-shadow:inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $black;
+                -webkit-box-shadow: inset 0 2px 4px 1px rgba(1, 48, 55, 0.5), inset 0 0 0 1px $black;
+                &:after {
+                    display: none;
+                }
+                &:before {
+                    border-left: 2px solid $black;
+                }
+            }
+            &:disabled, &.-disabled {
+                @include grandient-mixin($ink-light, $ink-light);
+                color: $white;
+                box-shadow: inset 0 0 0 1px $ink;
+                -webkit-box-shadow: inset 0 0 0 1px $ink;
+            }
+        }
+
+        // For All Disabled
+        &:disabled {
+            cursor: no-drop;
+            &:after {
+                display: none;
+            }
+        }
+
+        // For Iconic
+        i {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        // Dropdown
+        &.-dropdown {
+            position: relative;
+            padding-right: 52px;
+            &:before {
+                content: "\25BC";
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                position: absolute;
+                right: 0px;
+                border-left: 1px solid $gray;
+                text-indent: -1px;
+                top: 0px;
+                font-size: 10px;
+                border-radius: 0 3px 3px 0;
+            }
+            &.active {
+                ul {
+                    opacity: 1;
+                    top: 39px;
+                    pointer-events: auto;
+                }
+            }
+            ul {
+                padding: 0;
+                margin: 0;
+                list-style-type: none;
+                position: absolute;
+                width: 100%;
+                background: $white;
+                left: 0;
+                max-height: 300px;
+                overflow: scroll;
+
+                opacity: 0;
+                top: 33px;
+                pointer-events: none;
+                @include transition(all 600ms cubic-bezier(0.23, 1, 0.32, 1));
+
+                border-radius: 3px;
+                border: 1px solid #9eaeba;
+                background: white;
+                box-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.08);
+                padding: 12px 0;
+                li, li * {
+                    background: transparent !important;
+                    text-align: left;
+                    padding: 12px;
+                    line-height: 16px;
+                    position: relative;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    @include text(inherit, 16px, auto, 0px, $ink, 500);
+                    &:after {
+                        display: none;
+                    }
+                    &:hover {
+                        background: rgba($sky, .65) !important;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+// Cars
+.t-card {
+    padding: 20px 24px;
+    &.-s {
+        box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.02), 0 4px 8px 0 rgba(0, 0, 0, 0.02);
+    }
+    &.-dark {
+        .card-title,
+        .card-subtitle,
+        .card-paragraph {
+            color: white;
+        }
+    }
+    .card-title {
+        @include text(inherit, 18px, 28px, 0px, $ink, 500);
+        display: block;
+    }
+    .card-subtitle {
+        @include text(inherit, 14px, 20px, 1px, $ink-lighter, 600);
+        display: block;
+        text-transform: uppercase;
+    }
+    .card-paragraph {
+        margin: 0;
+        @include text(inherit, 14px, 20px, 0px, $ink, 500);
+        display: block;
+    }
+    hr {
+        border: none;
+        margin: 20px -24px 20px -24px !important;
+        height: 1px;
+        background: $sky-darker;
+        width: calc(100% + 48px);
+    }
+}
+
+// Properties
+.-list {
+    .t-buttons {
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        border-radius: 0 !important;
+        &:first-child {
+            -webkit-border-radius: 3px 0px 0px 3px !important;
+            -moz-border-radius: 3px 0px 0px 3px !important;
+            border-radius: 3px 0px 0px 3px !important;
+            margin-right: -1px;
+        }
+        &:last-child {
+            -webkit-border-radius: 0px 3px 3px 0px !important;
+            -moz-border-radius: 0px 3px 3px 0px !important;
+            border-radius: 0px 3px 3px 0px !important;
+            margin-left: -1px;
+        }
+    }
+}

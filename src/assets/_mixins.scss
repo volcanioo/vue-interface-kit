@@ -1,0 +1,119 @@
+/*******************************************
+ * © 2018                                  *
+ * by TRTWorld Labs                        *
+ -------------------------------------------
+ *                                         *
+ * TRT Mixins                              *
+ *******************************************/
+@mixin breakpoint($class) {
+    @if $class==xxs {
+        @media (min-width: 320px) {
+            @content;
+            .pull-right-xs {
+                float: right;
+            }
+            .pull-left-xs {
+                float: left;
+            }
+        }
+    }
+    @else if $class==xs {
+        @media (min-width: 480px) {
+            @content;
+            .pull-right-sm {
+                float: right;
+            }
+            .pull-left-sm {
+                float: left;
+            }
+        }
+    }
+    @else if $class==sm {
+        @media (min-width: 768px) {
+            @content;
+            .pull-right-sm {
+                float: right;
+            }
+            .pull-left-sm {
+                float: left;
+            }
+        }
+    }
+    @else if $class==md {
+        @media (min-width: 992px) {
+            @content;
+            .pull-right-md {
+                float: right;
+            }
+            .pull-left-md {
+                float: left;
+            }
+        }
+    }
+    @else if $class==lg {
+        @media (min-width: 1200px) {
+            @content;
+            .pull-right-lg {
+                float: right;
+            }
+            .pull-left-lg {
+                float: left;
+            }
+        }
+    }
+    @else if $class==xl {
+        @media (min-width: 1600px) {
+            @content;
+            .pull-right-xl {
+                float: right;
+            }
+            .pull-left-xl {
+                float: left;
+            }
+        }
+    }
+    @else if $class==xxl {
+        @media (min-width: 1920px) {
+            @content;
+            .pull-right-xxl {
+                float: right;
+            }
+            .pull-left-xxl {
+                float: left;
+            }
+        }
+    }
+    @else {
+        @warn "Breakpoint mixin supports: xs, sm, md, lg, xl, xxl";
+    }
+}
+@mixin transform($d) {
+    transform: $d;
+    -webkit-transform: $d;
+    -moz-transform: $d;
+    -o-transform: $d;
+}
+@mixin transition($d) {
+    -webkit-transition: $d;
+    -moz-transition: $d;
+    -o-transition: $d;
+    transition: $d;
+}
+@mixin shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+@mixin grandient-mixin($top_color, $bot_color) {
+    background: $top_color;
+    background: -webkit-linear-gradient(to top, $bot_color, $top_color);
+    background: linear-gradient(to top, $bot_color, $top_color);
+}
+@mixin text($font, $size, $line_height, $letter_spacing, $color, $weight) {
+    @if $font!="" { font-family: $font; }
+    @if $size!="" { font-size: $size; }
+    @if $line_height!="" { line-height: $line_height; }
+    @if $letter_spacing!="" { letter-spacing: $letter_spacing; }
+    @if $color!="" { color: $color; }
+    @if $weight!="" { font-weight: $weight; }
+}

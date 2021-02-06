@@ -82,10 +82,10 @@
 - [ ] Advanced
 	- [ ] Web Sockets
 	- [ ] Device Orientation
+	- [ ] Authentication
 	- [ ] Credentials
 	- [ ] Framework
 	- [ ] Design System
 	- [ ] Open Source
 	- [ ] Digital Culture
-	- [ ] Authotucantation
 	- [ ] How-to google search?

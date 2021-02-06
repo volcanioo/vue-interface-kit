@@ -1,4 +1,4 @@
-# Halit Progress (0%)
+# Halit Progress 🚀 0%
 - [ ] What is HTML?
     - [ ] History
     - [ ] Requirements

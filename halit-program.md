@@ -1,6 +1,5 @@
-# Program
-- [ ] HTML & CSS
-    - [ ] What is HTML?
+# Front-end Engineer
+- [ ] What is HTML?
     - [ ] History
     - [ ] Requirements
         - [ ] Block thinking methodology
@@ -16,6 +15,10 @@
 					- [ ] How to create a template?
 					- [ ] What's guideline?
 					- [ ] What's UI and UX?
+					- [ ] What's framework?
+						- [ ] Boostrap
+						- [ ] Materialize CSS
+						- [ ] Bulma
 			- [ ] Wireframe
 				- [ ] What's wireframe?
 				- [ ] How to create a wireframe?
@@ -34,8 +37,22 @@
 		- [ ] Design-first approach
 			- [ ] How should you think?
 			- [ ] How to become more design-friendly developer?
+		- [ ] UI & Browser Testing (Manual)
+		- [ ] Making layouts
+		- [ ] SEO Basics
+			- [ ] Sitemap
+			- [ ] Google SEO
+			- [ ] Google Adwords
+			- [ ] HTML approaches
+- [ ] Git, Version Control Systems
+	- [ ] Basic Usage of Git
+- [ ] What is CSS?
+	- [ ] History
+	- [ ] Requirements
+		- [ ] CSS Preprocessors
+			- [ ] SASS/SCSS
+			- [ ] Less
 		- [ ] Pixel Perfect Implementation
-			- [ ] What's CSS?
 			- [ ] Box Modal
 			- [ ] CSS Variables
 			- [ ] CSS Functions
@@ -46,16 +63,8 @@
 			- [ ] Float
 			- [ ] Position
 			- [ ] Psuedo-classes
-		- [ ] UI & Browser Testing (Manual)
-		- [ ] Making layouts
-		- [ ] SEO Basics
-		- [ ] CSS Preprocessors
-			- [ ] SASS/SCSS
-			- [ ] Less
 		- [ ] CSS Architecture
 			- [ ] What's BEM?
-- [ ] Git, Version Control Systems
-	- [ ] Basic Usage of Git
 - [ ] Javascript
 	- [ ] Dom Manipulation
 	- [ ] Fech API / XHR
@@ -63,15 +72,20 @@
 	- [ ] Typescript
 	- [ ] Webpack
 	- [ ] Package Manager (NPM)
+	- [ ] Debugging
 	- [ ] Vue.js
 		- [ ] Vuex
 		- [ ] Vue 3
 	- [ ] Linters and formatters
 		- [ ] ESLint
 		- [ ] Prettier
-- [ ] Framework
-- [ ] Design System
-- [ ] Open Source
-- [ ] Digital Culture
-- [ ] Time Management
-- [ ] How-to google search?
+- [ ] Advanced
+	- [ ] Web Sockets
+	- [ ] Device Orientation
+	- [ ] Credentials
+	- [ ] Framework
+	- [ ] Design System
+	- [ ] Open Source
+	- [ ] Digital Culture
+	- [ ] Authotucantation
+	- [ ] How-to google search?

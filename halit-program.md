@@ -1,4 +1,4 @@
-# Curriculum 🚀 0%
+# Curriculum 🚀 `0%`
 - [ ] What is HTML?
     - [ ] History
     - [ ] Requirements

@@ -2,7 +2,7 @@
 - [x] What is HTML?
     - [x] History
     - [x] Requirements
-        - [-] Block thinking methodology
+        - [ ] Block thinking methodology
 			- [ ] Interface, Screen
 				- [ ] Understanding of Screen
 				- [ ] What's interface?

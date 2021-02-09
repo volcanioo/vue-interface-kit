@@ -1,8 +1,8 @@
 # Progress 🚀 `0%`
-- [ ] What is HTML?
-    - [ ] History
-    - [ ] Requirements
-        - [ ] Block thinking methodology
+- [x] What is HTML?
+    - [x] History
+    - [x] Requirements
+        - [-] Block thinking methodology
 			- [ ] Interface, Screen
 				- [ ] Understanding of Screen
 				- [ ] What's interface?

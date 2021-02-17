@@ -3,9 +3,9 @@
     - [x] History
     - [x] Requirements
         - [x] Block thinking methodology
-			- [ ] Interface, Screen
-				- [ ] Understanding of Screen
-				- [ ] What's interface?
+			- [x] Interface, Screen
+				- [x] Understanding of Screen
+				- [x] What's interface?
 			- [ ] Sketches
 				- [ ] What's sketch?
 				- [ ] How to create a sketch?

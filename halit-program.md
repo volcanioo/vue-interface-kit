@@ -1,4 +1,6 @@
 # Progress 🚀 `0%`
+- [x] Web Development Introduction
+- [x] VSCode
 - [x] What is HTML?
     - [x] History
     - [x] Requirements

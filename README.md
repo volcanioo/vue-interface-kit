@@ -43,3 +43,12 @@ We are using bootstrap grid system. If you want learn more information and usage
 ### Colors
 We developed advanced color palette for structure. Every color has codename and every color has a background/color class. If you want change background or color property any element you can use color classes.
 
+
+
+
+
+![](https://emailsignature.trustpilot.com/signature/de-DE/3/55f2edf10000ff00058332de/text.png | width=100)
+![](https://emailsignature.trustpilot.com/signature/de-DE/3/55f2edf10000ff00058332de/stars.png | 100)
+
+<img src="" alt="stars" style="width:200px;"/>
+powered by [![alt text](https://emailsignature.trustpilot.com/logo/s/3/logo@2x.png)](https://de.trustpilot.com/review/homeday.de?utm_medium=Trustbox&utm_source=EmailSignature3)
